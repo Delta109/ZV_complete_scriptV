@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="designhome.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    header {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 1em 0;
+    }
+
+    section {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        color: #ffffff;
+    }
+
+    h2 {
+        color: #2c3e50;
+    }
+
+    p {
+        color: #555;
+    }
+
+    .cta-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #333;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        border: 1px solid #333;
+        transition: background-color 0.3s ease;
+    }
+
+    .cta-button:hover {
+        background-color: #555;
+    }
+
+    footer {
+        text-align: center;
+        padding: 1em 0;
+        background-color: #333;
+        color: #fff;
+    }
+
+    footer p {
+        margin: 0;
+    }
+
+    #button1 {
+    border: 2px solid #000; /* 2px breite Umrandung in Schwarz (kann nach Bedarf geändert werden) */
+    padding: 10px; /* Platz um den Text innerhalb des Buttons */
+    margin: 5px; /* Abstand zwischen den Buttons */
+    cursor: pointer;
+    color: aqua;
+    }
+
+    #button2 {
+    border: 2px solid #000; /* 2px breite Umrandung in Schwarz (kann nach Bedarf geändert werden) */
+    padding: 10px; /* Platz um den Text innerhalb des Buttons */
+    margin: 5px; /* Abstand zwischen den Buttons */
+    cursor: pointer; 
+    color: aqua;
+    }
+
+    #button3 {
+        border: 2px solid #000; /* 2px breite Umrandung in Schwarz (kann nach Bedarf geändert werden) */
+    padding: 10px; /* Platz um den Text innerhalb des Buttons */
+    margin: 5px; /* Abstand zwischen den Buttons */
+    cursor: pointer; /* Zeige den Cursor als Zeiger an, wenn über den Button gefahren wird */
+    color: aqua;
+    }
+
+
+
+    
+</style>
+
+<body>
+
+<header>
+    <h1>Willkommen bei der Item-Verwaltung</h1>
+</header>
+
+<section>
+    <h2>Über die Anwendung:</h2>
+    <p>Diese Web-Anwendung eignet sich dazu, ihre Produktstruktur in einer organisierten Dateistruktur abspeichern
+        zu können. Sie können Objekte erstellen, diese in Baugruppen zusammenfassen und diese Baugruppen wiederum
+        in weitere Baugruppen zusammenfassen. Die Anwendung ist in der Lage, die Verwendung von Baugruppen in anderen
+        Baugruppen zu erkennen und anzuzeigen. Sie können Objekte und Baugruppen löschen, umbenennen und verschieben.
+        Die Anwendung ist in der Lage, die Verwendung von Baugruppen in anderen Baugruppen zu erkennen und anzuzeigen.
+        Sie können Objekte und Baugruppen löschen, umbenennen und verschieben. Für den Start der Anwendung klicken Sie
+        bitte auf den Button "Objekt erstellen" und erstellen Sie ihr erstes Objekt.<break>Zum Anzeigen der Liste aller
+        Items klicken Sie bitte auf den Button "Liste aller Items". Um eine Baugruppenverwendung zu definieren, klicken
+        Sie bitte auf den Button "Baugruppenverwendung definieren".
+    </p>
+    <div id="button1">
+    <a th:href="@{/items-gui}">Objekt erstellen</a>
+    </div>
+    <div id="button2">
+    <a th:href="@{/items-gui/list}">Liste aller Items</a>
+    </div>
+    <div id="button3">
+    <a th:href="@{/items-selektor}">Baugruppenverwendung definieren</a>
+    </div>
+</section>
+
+<footer>
+    <p>© 2023 by Simon&Tobi</p>
+    
+</footer>
+
+
+
+
+
+
+
+<!--<ul>
+    <li><a th:href="@{/items-gui/list}">Liste aller Items</a></li>
+    <li><a th:href="@{/items-gui}">Objekt erstellen</a></li>
+    <li><a th:href="@{/items-selektor}">Baugruppenverwendung definieren</a></li>
+</ul>
+-->
+</body>

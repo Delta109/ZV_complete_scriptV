@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Item</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+     body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+    border: 1px solid #007bff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin: 10px 0;
+    display: inline-block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+section {
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    color: #333;
+}
+
+td {
+    padding: 12px;
+    text-align: left;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+}
+
+.tree {
+    margin-top: 10px;
+    color: #333;
+}
+
+.treeviewItem span {
+    color: #333;
+}
+
+.treeviewItem ul {
+    list-style-type: none;
+    margin-left: 20px;
+    padding-left: 0;
+    color: #333;
+}
+
+.treeviewItem li {
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.treeviewItem i {
+    margin-right: 5px;
+    color: #333;
+}
+
+
+    </style>
+
+</head>
+<body>
+    <a th:href="@{/home}">Home</a>
+    <section>
+<h2>Itemstruktur:</h2>
+<table>
+    <tr>
+        <td>Item Name</td>
+        <td th:text="${item.nomenclature}">Name des Item</td>
+    </tr>
+    <tr>
+        <td>Item Beschreibung</td>
+        <td th:text="${item.description}">Text der Beschreibung</td>
+    </tr>
+    <tr>
+        <td>Item Material</td>
+        <td th:text="${item.material}">Name des Materials</td>
+    </tr>
+</table>
+</section>
+
+<section>
+    <h2>Produktstruktur:</h2>
+    <div class="tree">
+        <div th:fragment="treeviewItem(item)">
+            <span th:text="${item.nomenclature}">Item</span>
+            <ul th:if="${item.getUses().size() > 0}">            
+                <li th:each="child : ${item.getUses()}">
+                    <i><span th:text="${child.name}">ItemInstance</span></i>                                
+                    <div th:replace="this :: treeviewItem(${child.represents})"></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!--<section>
+    <h2>Zuweisungen:</h2>
+    <ul>
+        <li th:each="assignment : ${item.assignments}">
+            <span th:text="${assignment}"></span>
+        </li>
+    </ul>
+</section>
+-->
+</body>
+</html>

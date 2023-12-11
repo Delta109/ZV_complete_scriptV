@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>Result</title>
+    <style>
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+section {
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+    background-color: #222;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin-right: 10px;
+    
+}
+
+a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+li {
+    list-style: none;
+    display: inline;
+}
+
+h1 {
+    color: #ffcc00;
+    margin-top: 20px;
+}
+
+h3 {
+    color: #fff;
+    margin-top: 10px;
+}
+
+img {
+    max-width: 100%;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+#bildquelle {
+    color: #fff;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+    </style>
+</head>
+<body>
+    <section>
+    <a th:href="@{/home}">Home</a>
+    <li><a th:href="@{/items-gui}">Objekt erstellen</a></li>
+    <h1>Errormeldung</h1>
+    <p>Kritischer Fehler: Initialisieren Sie zunächst ein Objekt, um eine Zuweisung erstellen zu können<br> 
+    und stellen Sie sicher, dass eine stabile Internetverbindung zum Server besteht.
+    </p>
+    <img src="https://debeste.de/upload/749e050e7730de43e8f111800e74bf693075.jpg" alt="Technikerfragen vom Feinsten">
+
+    <div id="bildquelle"> https://debeste.de/749e050e7730de43e8f111800e74bf693075</div>
+    </section>
+</body>
+</html>

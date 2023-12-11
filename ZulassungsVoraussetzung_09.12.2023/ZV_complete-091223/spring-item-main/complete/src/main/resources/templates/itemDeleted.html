@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Item gelöscht</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #333; /* Hintergrundfarbe auf Schwarz ändern */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 100% der Viewport-Höhe nutzen */
+}
+
+section {
+    width: 80%;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Zentrieren des Inhalts */
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+    border: 1px solid #007bff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+h2 {
+    color: #2c3e50;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+input[type="text"],
+input[type="submit"] {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #555;
+}
+    </style>
+</head>
+<body>
+    <section>
+    <a th:href="@{/home}">Home</a>
+    <p th:text="|Item mit der Id: ${id} gelöscht!|" ></p>
+    <a th:href="@{/items-gui/list}">zurück</a>
+    </section>
+</body>
+</html>

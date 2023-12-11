@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Liste aller Items</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+    
+    body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+    border: 1px solid #007bff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+h2 {
+    color: #ffcc00;
+    margin-top: 20px;
+}
+
+section {
+    background-color: #fff;
+    width: 80%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 12px;
+    color: #333;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px;
+    text-align: left;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+.back-home {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.back-home a {
+    margin-bottom: 10px;
+}
+
+.back-home a:first-child {
+    margin-right: auto;
+}
+
+.back-home a:last-child {
+    margin-left: auto;
+}
+
+.back-home a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+
+    </style>
+</head>
+<body>
+    <a th:href="@{/home}">Home</a>
+<h2>Liste der Items</h2>
+<section>
+<table>
+    <tr>
+        <td>Name</td>
+        <td>Beschreibung</td>
+        <td>Material</td>
+    </tr>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.nomenclature}">Item Name</td>
+        <td th:text="${item.description}">Item Beschreibung</td>
+        <td th:text="${item.material}">Item Material</td>      
+        <td th:text="${item.id}"></td>  
+        
+        <td><a th:href="@{/items-gui/{id}/delete(id=${item.id})}">löschen</a></td>
+        <td><a th:href="@{/items-gui/{id}/show(id=${item.id})}">anzeigen</a></td>
+
+    </tr>
+</table>
+</section>
+
+<a th:href="@{/items-gui}">zurück</a>
+</body>
+</html>

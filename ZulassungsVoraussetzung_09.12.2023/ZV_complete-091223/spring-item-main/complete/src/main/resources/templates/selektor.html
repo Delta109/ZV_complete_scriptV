@@ -1,0 +1,227 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Baugruppenverwendung definieren</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <style>
+           body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+    border: 1px solid #007bff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+h2, h3, label {
+    color: #fff;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+select {
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#verwendungsListe {
+    margin-top: 20px;
+    color: #333;
+}
+
+#verwendungsListe li {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    display: flex; /* Um die Elemente in einer Zeile anzuordnen */
+    justify-content: space-between; /* Um den Abstand zwischen Text und Button zu steuern */
+}
+
+#verwendungsListe button {
+    background-color: #dc3545;
+    padding: 5px 10px; /* Anpassung des Abstands zum Text */
+}
+
+#verwendungsListe button:hover {
+    background-color: #bd2130;
+}
+section {  
+    width: 80%; /* Oder eine andere gewünschte Breite */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #c8c8c8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-color: #333;
+    border-style: solid;
+    border-width: 1px;
+}
+
+
+
+        </style>
+    </head>
+
+    <body>
+        <section>
+        <a th:href="@{/home}">Home</a>
+        <h2>Baugruppen:</h2>
+        <ul id="new-item">
+            <li>Auto</li>
+            <li>Achse</li>
+            <li>Rad</li>
+            <li>Haube</li>
+            <li>Steckachse</li>
+        </ul>
+        </section>
+
+        <section>
+        <h2>Bauteile:</h2>
+        <ul id="new-object-list">
+            <li th:each="item : ${items}"
+             th:text="${item.nomenclature}">
+            </li>
+        </ul>
+        </section>
+
+<!--th:if="${iterStat.index>4 }" einfügen für Ausblenden der Items, Deklarieren von iterStat! -->
+
+<section>
+        <h2>Zuweisung:</h2>
+
+        <label>Wähle die Baugruppe:</label>
+        <select id="item-select">
+
+            <option>Auto</option>
+            <option>Achse</option>
+            <option>Rad</option>
+            <option>Haube</option>
+            <option>Steckachse</option>
+        </select>
+
+        <label>Wähle das Objekt:</label>
+        <select id="object-select">
+            <option
+                th:each="item, iterStat: ${items}"
+                th:if="${iterStat.index>4 }"
+                th:value="${item.nomenclature}"
+                th:text="${item.nomenclature}">
+            </option>
+
+        
+            
+            
+
+        </select>
+
+       <!-- <h3>Ein ganz normaler Testbutton</h3>
+       <input type="text" id="textInput" />
+       <button onclick= "anzeigen()">Ergebnis anzeigen</button>
+
+        <h3>Ein ganz normaler Testbutton</h3>
+         <p id="demo"></p>
+
+        <script>
+              function anzeigen(){
+                var text = document.getElementById("textInput").value;
+                document.getElementById("demo").innerHTML = text;
+
+              }
+        </script> -->
+
+        <button onclick="ergebnisAusgeben()">Jetzt Zuweisung erstellen!</button>
+        <script>
+            function ergebnisAusgeben() {
+                // Die Werte aus den Select-Elementen auslesen und zu einem String zusammenfügen
+                var item = document.getElementById("item-select").value;
+                var object = document.getElementById("object-select").value;
+                var fusedAssignment = item +" "+  "enthält" + " "+ object;
+
+                saveAssignment(fusedAssignment);
+
+                // Ein neues Listenelement erstellen
+                var liElement = document.createElement("li");
+
+                // Den Inhalt in das Listenelement einfügen
+                liElement.appendChild(document.createTextNode(fusedAssignment));
+
+                // Das Listenelement der Ergebnisliste hinzufügen
+                document.getElementById("verwendungsListe").appendChild(liElement);
+
+                // Einen "Löschen"-Button zum Listenelement hinzufügen
+                var deleteButton = document.createElement("button");
+                deleteButton.appendChild(document.createTextNode("Löschen"));
+                deleteButton.onclick = function() {
+                    removeItem(liElement);
+            };
+
+            liElement.appendChild(deleteButton);
+
+    
+
+            function removeItem(item) {
+                document.getElementById("verwendungsListe").removeChild(item);
+        }
+
+
+
+                //var liste = document.getElementById("Liste");
+                //var verwendungsListe = document.getElementById(fusedAssignment);
+                //document.getElementById("ZuweisungAnzeigen").innerHTML = verwendungsListe;
+                       // document.getElementById("ZuweisungAnzeigen").innerHTML = fusedAssignment;
+            }
+            
+            function saveAssignment(assignment) {
+        // Hier könntest du z.B. localStorage oder eine andere Datenstruktur verwenden
+        // In diesem Beispiel wird localStorage verwendet
+        var assignments = JSON.parse(localStorage.getItem('assignments')) || [];
+        assignments.push(assignment);
+        localStorage.setItem('assignments', JSON.stringify(assignments));
+    }
+
+        </script>
+        
+        <h2>Definierte Baugruppen:</h2>
+        <ul id="verwendungsListe">
+            <p th="ZuweisungAnzeigen"></p>
+        </ul>
+        
+        </section>
+
+    </body>
+</html>
